@@ -23,6 +23,10 @@ class TodoService {
      * @return the upcoming todos, earliest due date first
      */
     fun upcomingTodos(todos: List<Todo>, now: LocalDate): List<Todo> {
-        TODO("Not implemented yet: this is the feature to implement")
+        return todos
+            .filter { it.status != Status.ARCHIVED }
+            .filter { it.dueDate != null }
+            .filter { it.dueDate!! >= now }
+            .sortedBy { it.dueDate }
     }
 }
